@@ -1,0 +1,12 @@
+FROM node:latest
+MAINTAINER Your Name <your@email.com>
+
+ADD ./mybook /mybook
+RUN npm install -g gitbook
+RUN npm install -g gitbook-cli
+RUN gitbook install
+
+WORKDIR /mybook
+EXPOSE 4000
+
+CMD ["/usr/local/bin/gitbook", "serve"]

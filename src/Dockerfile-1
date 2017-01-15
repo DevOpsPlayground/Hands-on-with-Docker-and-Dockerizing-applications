@@ -1,0 +1,6 @@
+FROM node:latest
+MAINTAINER Your Name <your@email.com>
+
+ADD ./mybook /mybook
+
+CMD ["/bin/bash"]
