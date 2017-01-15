@@ -86,19 +86,26 @@ We could run it through a Linter such as [FROM:LATEST](https://www.fromlatest.io
 or use one in our IDE, however this Dockerfile isn't really big enough for that.
 
 So let's list everything wrong with this image:
+
 1. `FROM node:latest` - The `latest` tag is awful and should never be used in a
 Dockerfile. How do we know what we're getting between builds?
+
 2. `ADD` - As our source is not a URL or a tarball we should use COPY
 ([see here for further reference](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#/add-or-copy))
+
 3. `RUN` - We have multiple run commands that perform similar tasks. These should
 be grouped together to save on the number of layers created.
+
 4. `CMD` - There are very few situations where simply using this directive is
 the best choice. Instead we should be using `ENTRYPOINT` with a `CMD` directive
 to pass default parameters.
+
 5. The ordering of our `ADD` and `RUN` statements means that changing the book's source
 will trigger the RUN statement's caches to be invalidated, and so they will run again.
 (You can observe this by creating a new file inside `mybook` and rebuilding the image.
+
 6. We don't clean up after our `npm install` actions and so are wasting space.
+
 7. `gitbook serve` is fine for development, however we'd be better off building
 the contents and serving them using something like nginx.
 
