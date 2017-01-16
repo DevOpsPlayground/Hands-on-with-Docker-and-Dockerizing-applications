@@ -1,0 +1,4 @@
+FROM nginx:1.11.8-alpine
+MAINTAINER Your Name <your@name.com>
+
+COPY mybook/_book/* /usr/share/nginx/html/
