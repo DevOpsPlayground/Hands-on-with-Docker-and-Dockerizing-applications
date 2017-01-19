@@ -218,9 +218,9 @@ This is the easiest option to demo, all we need to do is run an nginx container,
 bind the HTTP port to the host and mount the source code inside the container.
 
 Let's try:
-* `sudo docker run -d -p 80:80 -v ${PWD}/mybook/_book/*:/usr/share/nginx/html:ro 'nginx:latest'`
+* `sudo docker run -d -p 80:80 -v /vagrant/mybook/_book:/usr/share/nginx/html 'nginx:latest'`
 * `-d` tells Docker to run this container as a daemon in the background
-* Check the site out by visiting `http://localhost:8000`
+* Check the site out by visiting `http://localhost:800`
 
 This method is useful if our source changes very regularly and is being ran
 from the same host, particularly in instances such as local development.
@@ -252,7 +252,7 @@ Let's build:
 
 Let's run:
 * `sudo docker run -d -p 80:80 'mynginx/mybook'`
-* As before, let's check it out on `http://localhost:8000`
+* As before, let's check it out on `http://localhost:800`
 
 ## Conclusion
 
