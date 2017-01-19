@@ -39,13 +39,14 @@ The above Dockerfile does the following:
   3. Tells the container to run bash on start
 
 So next we need to build it:
-* `sudo docker built -t 'mybook' .`
+* `sudo docker build -t 'mybook' .`
 
 And then we can run it to check our files are there:
 * `sudo docker run --rm -it 'mybook'`
 * `ls -la /mybook`
 
-When you're done, exit the container. No need to remove it, the `--rm` in the
+**When you're done, exit the container.**  
+No need to remove it, the `--rm` in the
 run command did that for us! We also specified `-it`, meaning we're likely
 to interact with the container via terminal.
 This is a basic first container, however it doesn't really do much right now,
@@ -80,9 +81,9 @@ a port to allow incomming connections. Finally, we need to serve our book and ha
 modified our `CMD` directive to reflect this.
 
 Let's build our image again and then run it:
-* `sudo docker built -t 'mybook' .`
-* `sudo docker run --rm -p 4000:4000 'mybook'`
-* Visit the book in your browser: http://localhost:4000
+* `sudo docker build -t 'mybook' .`
+* `sudo docker run --rm -it -p 4000:4000 'mybook'`
+* Visit the book in your browser: http://localhost:40000
 
 This is great progress, now that we have our book being served we can look to
 improve the Dockerfile, because right now it is attrocious!
