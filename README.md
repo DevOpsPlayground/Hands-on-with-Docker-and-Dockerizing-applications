@@ -18,6 +18,8 @@ take a few minutes the first time around.
 Once the VM is ready, type `vagrant ssh` into your terminal and you will be
 logged into the VM.
 
+Throughout the project make sure you work on a file called "Dockerfile", this should be in `/vagrant`
+
 ## 1 - Our Dockerfile
 
 Every Dockerized application needs at least one Dockerfile, this will describe the steps necessary to create our container image.
