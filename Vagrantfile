@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 80 , host: 800
   config.ssh.insert_key = true
 
-  config.vm.synced_folder "./", "/home/docker"
+  config.vm.synced_folder "./", "/vagrant"
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "1024"
