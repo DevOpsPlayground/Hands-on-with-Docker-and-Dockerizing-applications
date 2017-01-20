@@ -39,13 +39,14 @@ The above Dockerfile does the following:
   3. Tells the container to run bash on start
 
 So next we need to build it:
-* `sudo docker built -t 'mybook' .`
+* `sudo docker build -t 'mybook' .`
 
 And then we can run it to check our files are there:
 * `sudo docker run --rm -it 'mybook'`
 * `ls -la /mybook`
 
-When you're done, exit the container. No need to remove it, the `--rm` in the
+**When you're done, exit the container.**  
+No need to remove it, the `--rm` in the
 run command did that for us! We also specified `-it`, meaning we're likely
 to interact with the container via terminal.
 This is a basic first container, however it doesn't really do much right now,
@@ -80,9 +81,9 @@ a port to allow incomming connections. Finally, we need to serve our book and ha
 modified our `CMD` directive to reflect this.
 
 Let's build our image again and then run it:
-* `sudo docker built -t 'mybook' .`
-* `sudo docker run --rm -p 4000:4000 'mybook'`
-* Visit the book in your browser: http://localhost:4000
+* `sudo docker build -t 'mybook' .`
+* `sudo docker run --rm -it -p 4000:4000 'mybook'`
+* Visit the book in your browser: http://localhost:40000
 
 This is great progress, now that we have our book being served we can look to
 improve the Dockerfile, because right now it is attrocious!
@@ -217,9 +218,9 @@ This is the easiest option to demo, all we need to do is run an nginx container,
 bind the HTTP port to the host and mount the source code inside the container.
 
 Let's try:
-* `sudo docker run -d -p 80:80 -v ${PWD}/mybook/_book/*:/usr/share/nginx/html:ro 'nginx:latest'`
+* `sudo docker run -d -p 80:80 -v /vagrant/mybook/_book:/usr/share/nginx/html 'nginx:latest'`
 * `-d` tells Docker to run this container as a daemon in the background
-* Check the site out by visiting `http://localhost:8000`
+* Check the site out by visiting `http://localhost:800`
 
 This method is useful if our source changes very regularly and is being ran
 from the same host, particularly in instances such as local development.
@@ -251,7 +252,7 @@ Let's build:
 
 Let's run:
 * `sudo docker run -d -p 80:80 'mynginx/mybook'`
-* As before, let's check it out on `http://localhost:8000`
+* As before, let's check it out on `http://localhost:800`
 
 ## Conclusion
 
