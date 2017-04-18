@@ -186,7 +186,7 @@ So, let's build the image:
 * `sudo docker build -t 'builders/gitbook' .`
 
 And then let's build our book:
-* `sudo docker run --rm -v ${PWD}/mybook:/mybook 'builders/gitbook'`
+* `sudo docker run --rm -v $(pwd)/mybook:/mybook 'builders/gitbook'`
 * `-v` tells Docker to mount the specified directory into the container
 
 And finally, let's inspect the output:
